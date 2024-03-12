@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{super()}}
+<p>You need to fill in all the fields</p>
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<form action="/single" method="post" class="form">
+	{% block feature -%}
+<ul class="form_single" style="padding-right: 15%;">
+    {%for ft in feature_list%}
+    	<p>{{ft.name}}:</label> <input class="name_single" type="text" name="{{ft.name}}" value="" required /></p>
+    {% endfor %}
+</ul>
+    {% endblock feature -%}
+	<p><input class="send_btm" type="submit" value="Send" /></p>
+</form>
+{% endblock %}
+

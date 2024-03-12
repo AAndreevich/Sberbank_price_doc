@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{super()}}
+<p>You can do predict</p>
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<a href="/clear_cash"><button class='send_btm'>Clean cash</button></a>
+<form action="/multiple" method="post" class="form", enctype="multipart/form-data">
+	<p style="font-size: 25px;">You should choise a file *.csv: "X_test.csv"</p>
+	<input type=file name=file class="file_btn" />
+	<input class="send_btm" type=submit value=Upload>
+</form>
+{% for cat, msg in get_flashed_messages(True) %}
+{% if cat == "error" %}
+<div>You should choice a file</div>
+{% endif %}
+{% endfor %}
+<form action="/success" method="post" class="form">
+<p><input class="send_btm" type="submit" value="Predict"></p>
+</form>
+<a href="/download"><button class='send_btm'>Download</button></a>
+{% endblock %}
